@@ -6,7 +6,9 @@ export class MarketerController {
   constructor(private marketerService: MarketerService) {}
 
   @Get(':marketerId')
-  getMarketerData(@Param('marketerId') marketerId: string): object {
-    return this.marketerService.getMarketerData(marketerId);
+  async getMarketerData(
+    @Param('marketerId') marketerId: string,
+  ): Promise<void> {
+    await this.marketerService.getMarketerData(marketerId);
   }
 }

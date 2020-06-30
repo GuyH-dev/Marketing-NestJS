@@ -5,13 +5,11 @@ import { writeToFile } from 'src/tools/tool';
 
 @Injectable()
 export class CampaignsService {
-  constructor() {}
-
   /**
    * Function that fetches campaign data by specific campaign ID and runs outer function
    * @param campaignId
    */
-  async getCampaingData(campaignId: string): Promise<any> {
+  public async getCampaingData(campaignId: string): Promise<void> {
     const resultData = await axios.get(
       `${OutbrainCampaignUrl}/${campaignId}`,
       outBrainHeaders,
@@ -22,7 +20,7 @@ export class CampaignsService {
    * Fuction that writes campaign data to JSON file
    * @param campaignData
    */
-  campaignDataToJson(campaignData) {
+  private campaignDataToJson(campaignData) {
     const jsonToString = JSON.stringify(campaignData);
     writeToFile(jsonToString, 'CampaignData', 'json');
   }

@@ -5,12 +5,11 @@ import { isLessthanAWeekAgo, writeToCSV } from 'src/tools/tool';
 
 @Injectable()
 export class MarketerService {
-  constructor() {}
   /**
    * Function that fetches campaigns data by specific marketer ID and runs outer functions
    * @param marketId
    */
-  async getMarketerData(marketId: string): Promise<void> {
+  public async getMarketerData(marketId: string): Promise<void> {
     const resultData = await axios.get(
       `${OutbrainCampaignUrl}/${marketId}/campaigns`,
       outBrainHeaders,
@@ -23,7 +22,7 @@ export class MarketerService {
    * Function that fetches all the campaigns from last week to an array and writes it as CSV
    * @param campaginsData
    */
-  lastWeekCampaigns(campaginsData) {
+  private lastWeekCampaigns(campaginsData) {
     const campaignsArray = [];
     campaginsData.forEach(campaign => {
       if (isLessthanAWeekAgo(campaign.creationTime)) {
@@ -42,7 +41,7 @@ export class MarketerService {
    * Function that fetches all the campaigns with more than 10$ spent and writes it as CSV
    * @param campaignsData
    */
-  above10USD(campaignsData) {
+  private above10USD(campaignsData) {
     const campaignsArray = [];
     campaignsData.forEach(campaign => {
       const stringToNumber = parseFloat(campaign.liveStatus.amountSpent);

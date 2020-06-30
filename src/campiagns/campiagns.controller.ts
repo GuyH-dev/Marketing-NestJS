@@ -6,7 +6,9 @@ export class CampiagnsController {
   constructor(private campaignService: CampaignsService) {}
 
   @Get(':campaignId')
-  getCampaignData(@Param('campaignId') campaignId: string): object {
-    return this.campaignService.getCampaingData(campaignId);
+  async getCampaignData(
+    @Param('campaignId') campaignId: string,
+  ): Promise<void> {
+    await this.campaignService.getCampaingData(campaignId);
   }
 }

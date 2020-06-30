@@ -21,7 +21,7 @@ export function writeToFile(data: string, path: string, type: string) {
  * Function that checks if a date is less the a week ago
  * @param date
  */
-export function isLessthanAWeekAgo(date) {
+export function isLessThanAWeekAgo(date) {
   var today = new Date();
   today.setDate(today.getDate() - 7);
   var mydate = new Date(date);
