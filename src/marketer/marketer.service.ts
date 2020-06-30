@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OutbrainCampaignUrl, outBrainHeaders } from './marketer.costants';
 import axios from 'axios';
-import { isLessthanAWeekAgo, writeToCSV } from 'src/tools/tool';
+import { isLessThanAWeekAgo, writeToCSV } from 'src/tools/tool';
 
 @Injectable()
 export class MarketerService {
@@ -25,7 +25,7 @@ export class MarketerService {
   private lastWeekCampaigns(campaginsData) {
     const campaignsArray = [];
     campaginsData.forEach(campaign => {
-      if (isLessthanAWeekAgo(campaign.creationTime)) {
+      if (isLessThanAWeekAgo(campaign.creationTime)) {
         campaignsArray.push({
           id: campaign.id,
           name: campaign.name,
